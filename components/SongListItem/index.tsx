@@ -11,7 +11,7 @@ export type SongListProps = {
 const SongListItem = (props: SongListProps) => {
     const navigation = useNavigation(); 
     const songClick = () => {
-        navigation.navigate('NowPlaying', {id: props.song.id})
+        navigation.navigate('NowPlayingScreen', {id: props.song.id})
     }   
     
     return (

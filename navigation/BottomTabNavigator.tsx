@@ -16,6 +16,8 @@ import TabTwoScreen from '../screens/TabTwoScreen';
 import { BottomTabParamList, TabOneParamList, TabTwoParamList } from '../types';
 import AlbumScreen from "../screens/AlbumScreen";
 import NowPlaying from '../screens/NowPlaying';
+import { AlbumHeaderProps } from '../components/AlbumHeader';
+import NowPlayingScreen from '../screens/NowPlaying';
 
 const BottomTab = createBottomTabNavigator<BottomTabParamList>();
 
@@ -28,7 +30,7 @@ export default function BottomTabNavigator() {
       tabBarOptions={{ activeTintColor: Colors[colorScheme].tint }}>
       <BottomTab.Screen
         name="Home"
-        
+        screenOptions={{headerShown: false}}
         component={TabOneNavigator}
         options={{
           tabBarIcon: ({ color }) => <Entypo name="home" size={30} style={{ marginBottom: -3 }} color={color} />,
@@ -63,19 +65,25 @@ export default function BottomTabNavigator() {
 // https://reactnavigation.org/docs/tab-based-navigation#a-stack-navigator-for-each-tab
 const TabOneStack = createStackNavigator<TabOneParamList>();
 
-function TabOneNavigator() {
+function TabOneNavigator(props: AlbumHeaderProps) {
   return (
     <TabOneStack.Navigator>
       <TabOneStack.Screen
         name="TabOneScreen"
         component={HomeScreen}
-        options={{ headerTitle: 'Home' }}
+        options={{ headerTitle: 'Back', headerShown: false }}
       />
 
       <TabOneStack.Screen
         name="AlbumScreen"
         component={AlbumScreen}
-        options={{ headerTitle: 'Album' }}
+        options={{ headerTitle: false }}
+      />
+
+      <TabOneStack.Screen
+        name="NowPlayingScreen"
+        component={NowPlayingScreen}
+        options={{ headerShown: false }}
       />
 
     </TabOneStack.Navigator>
