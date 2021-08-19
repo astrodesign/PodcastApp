@@ -1,5 +1,5 @@
-import React, { useEffect } from 'react'
-import { StyleSheet, Text, View, Image } from 'react-native'
+import React, { useEffect, useState } from 'react'
+import { StyleSheet, Text, View, Image, TouchableOpacity } from 'react-native'
 import Colors from '../../components'; 
 import {AntDesign, FontAwesome } from '@expo/vector-icons'; 
 import {Audio} from 'expo-av'; 
@@ -15,22 +15,43 @@ const song ={
 
 const PlayerWidget = () => {
 
+    const [sound, setSound] = useState<Sound|null>(null); 
+    const [isPlaying, setIsPlaying]= useState<boolean>(true); 
+
     const onPlaybackStatusUpdate = (status) => {
-        console.log(status); 
+        setIsPlaying(status.isPlaying); 
     }
 
     const playCurrentSong = async () =>{
-        const { sound } = Audio.Sound.createAsync(
+        //unloads the song that is already playing before playing new song
+        if (sound){
+            await sound.unloadAsync(); 
+        }
+
+        const { sound: newSound } = await Audio.Sound.createAsync(
             {uri: song.uri}, 
-            { shouldPlay: true}, 
+            { shouldPlay: isPlaying}, 
             onPlaybackStatusUpdate
         )
+        setSound(newSound)
     }
 
     useEffect(()=> {
         //play the song
         playCurrentSong(); 
     }, [])
+
+    const onPlayPausePress = async () => {
+        if(!sound){
+            return; 
+        }
+        if (isPlaying){
+            await sound.stopAsync()
+        }
+        else {
+            await sound.playAsync(); 
+        }
+    }
 
     return (
         <View style={styles.container}>
@@ -42,7 +63,11 @@ const PlayerWidget = () => {
         </View>
         <View style={styles.buttonContainer}>
             <AntDesign name='hearto' size={25} color={'white'}/>
-            <FontAwesome name='play' size={25} color={'white'}/>
+            
+            
+            <TouchableOpacity onPress={onPlayPausePress}>
+                <FontAwesome name={isPlaying ? 'pause' : 'play'} size={25} color={'white'}/>
+            </TouchableOpacity>
 
         </View>
         </View>
