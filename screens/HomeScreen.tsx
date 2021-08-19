@@ -3,7 +3,7 @@ import { StyleSheet, Text, View, SafeAreaView, FlatList } from 'react-native';
 import Album from '../components/Album';
 import AlbumCategoryComponent from '../components/AlbumCategory';
 import albumCategories from '../data/albumCategories';
-import PlayerControls from '../components/Player'
+import PlayerControls from '../components/PlayerControls'
 
 export default function HomeScreen() {
   return (

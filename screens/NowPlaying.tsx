@@ -82,7 +82,8 @@ const styles = StyleSheet.create({
     cover: {
       marginVertical: 16,
       width: width - 32,
-      height: width - 32
+      height: width - 32, 
+      borderRadius: 15,
     },
     metadata: {
       flexDirection: "row",

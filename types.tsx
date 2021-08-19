@@ -33,3 +33,9 @@ export type Song = {
   title: string,
   artist: string,
 }
+export type NowPlaying = {
+  id: string,
+  imageUri: string,
+  title: string,
+  artist: string,
+}

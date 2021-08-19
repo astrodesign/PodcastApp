@@ -1,17 +1,36 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { StyleSheet, Text, View, Image } from 'react-native'
 import Colors from '../../components'; 
 import {AntDesign, FontAwesome } from '@expo/vector-icons'; 
+import {Audio} from 'expo-av'; 
 //import Song from '../../types'; 
 
 const song ={
     id: '4',
     imageUri: 'https://cache.boston.com/resize/bonzai-fba/Globe_Photo/2011/04/14/1302796985_4480/539w.jpg',
-    title: 'High on You',
-    artist: 'Helen',
+    title: 'Stay At Home Astronaut',
+    artist: 'Walker Lillard',
+    uri: 'https://www.learningcontainer.com/wp-content/uploads/2020/02/Kalimba.mp3'
   }
 
 const PlayerWidget = () => {
+
+    const onPlaybackStatusUpdate = (status) => {
+        console.log(status); 
+    }
+
+    const playCurrentSong = async () =>{
+        const { sound } = Audio.Sound.createAsync(
+            {uri: song.uri}, 
+            { shouldPlay: true}, 
+            onPlaybackStatusUpdate
+        )
+    }
+
+    useEffect(()=> {
+        //play the song
+        playCurrentSong(); 
+    }, [])
 
     return (
         <View style={styles.container}>
