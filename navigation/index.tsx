@@ -1,20 +1,16 @@
-/**
- * If you are not familiar with React Navigation, check out the "Fundamentals" guide:
- * https://reactnavigation.org/docs/getting-started
- *
- */
 import { NavigationContainer, DefaultTheme, DarkTheme } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import * as React from 'react';
 import { ColorSchemeName } from 'react-native';
-import AlbumCategoryComponent from '../components/AlbumCategory';
-import AlbumScreen from '../screens/AlbumScreen';
 
 import NotFoundScreen from '../screens/NotFoundScreen';
+import NowPlayingScreen from '../screens/NowPlaying';
 import { RootStackParamList } from '../types';
 import BottomTabNavigator from './BottomTabNavigator';
 import LinkingConfiguration from './LinkingConfiguration';
 
+// If you are not familiar with React Navigation, we recommend going through the
+// "Fundamentals" guide: https://reactnavigation.org/docs/getting-started
 export default function Navigation({ colorScheme }: { colorScheme: ColorSchemeName }) {
   return (
     <NavigationContainer
@@ -34,8 +30,7 @@ function RootNavigator() {
     <Stack.Navigator screenOptions={{ headerShown: false }}>
       <Stack.Screen name="Root" component={BottomTabNavigator} />
       <Stack.Screen name="NotFound" component={NotFoundScreen} options={{ title: 'Oops!' }} />
-      <Stack.Screen name="AlbumScreen" component={AlbumScreen}/>
-
+      <Stack.Screen name="NowPlaying" component={NowPlayingScreen} options={{ title: 'Now Playing' }} />
     </Stack.Navigator>
   );
 }

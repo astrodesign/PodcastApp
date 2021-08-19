@@ -1,15 +1,22 @@
 import React from 'react'
-import { StyleSheet, Text, View, Image } from 'react-native'
+import { StyleSheet, Text, View, Image, TouchableOpacity } from 'react-native'
 import {AntDesign, FontAwesome, FontAwesome5 } from '@expo/vector-icons'; 
-import Song from '../../types'; 
+import {Song} from '../../types'; 
+import { useNavigation } from '@react-navigation/native';
 
 export type SongListProps = {
     song: Song
 }
 
 const SongListItem = (props: SongListProps) => {
-
+    const navigation = useNavigation(); 
+    const songClick = () => {
+        navigation.navigate('NowPlaying', {id: props.song.id})
+    }   
+    
     return (
+
+        <TouchableOpacity onPress={songClick}>
         <View style={styles.container}>
             <Image source={{uri: props.song.imageUri}} style={styles.image}/>
         
@@ -22,6 +29,7 @@ const SongListItem = (props: SongListProps) => {
 
         </View>
         </View>
+        </TouchableOpacity>
     )
 }
 

@@ -1,12 +1,7 @@
-/**
- * Learn more about using TypeScript with React Navigation:
- * https://reactnavigation.org/docs/typescript/
- */
 
 export type RootStackParamList = {
   Root: undefined;
   NotFound: undefined;
-
 };
 
 export type BottomTabParamList = {
@@ -16,7 +11,7 @@ export type BottomTabParamList = {
 
 export type TabOneParamList = {
   TabOneScreen: undefined;
-  AlbumScreen: undefined; 
+  AlbumScreen: undefined;
 };
 
 export type TabTwoParamList = {
@@ -24,17 +19,17 @@ export type TabTwoParamList = {
 };
 
 export type Album = {
-  id: string; 
-  imageUri: string; 
-  artistsHeadline: string; 
-  name: string; 
-  by: string; 
-  numberOfLikes: number; 
-}; 
+  id: string;
+  name: string;
+  by: string;
+  numberOfLikes: number;
+  imageUri: string;
+  artistsHeadline: string;
+}
 
-export type Song ={
-  id: string; 
-  imageUir: string; 
-  title: string; 
-  artist: string; 
+export type Song = {
+  id: string,
+  imageUri: string,
+  title: string,
+  artist: string,
 }

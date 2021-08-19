@@ -1,3 +1,4 @@
+import { AntDesign } from '@expo/vector-icons';
 import React from 'react'
 import { Image, StyleSheet, Text, View } from 'react-native'
 import { TouchableOpacity } from 'react-native-gesture-handler';
@@ -18,7 +19,8 @@ const AlbumHeader = (props: AlbumHeaderProps) => {
         </View>
         <TouchableOpacity>
             <View style={styles.button}>
-                <Text style={styles.buttonText}>PLAY</Text>
+                <AntDesign name="play" size={15} color={'white'} style={{margin: 5}} />
+                <Text style={styles.buttonText}>SHUFFLE PLAY</Text>
             </View>
         </TouchableOpacity>
         </View>
@@ -57,6 +59,7 @@ const styles = StyleSheet.create({
     }, 
 
     button:{
+        flexDirection: 'row', 
         backgroundColor: '#1CD05D',
         borderRadius: 50, 
         height: 55, 
@@ -68,7 +71,7 @@ const styles = StyleSheet.create({
 
     buttonText:{
         color: 'white', 
-        fontSize: 20, 
+        fontSize: 15, 
         fontWeight: 'bold', 
         
     }
