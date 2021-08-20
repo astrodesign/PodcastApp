@@ -18,6 +18,7 @@ import AlbumScreen from "../screens/AlbumScreen";
 import NowPlaying from '../screens/NowPlaying';
 import { AlbumHeaderProps } from '../components/AlbumHeader';
 import NowPlayingScreen from '../screens/NowPlaying';
+import NowPlayingModal from '../components/BottomSheetModal';
 
 const BottomTab = createBottomTabNavigator<BottomTabParamList>();
 
@@ -25,9 +26,12 @@ export default function BottomTabNavigator() {
   const colorScheme = useColorScheme();
 
   return (
+    
+
     <BottomTab.Navigator
       initialRouteName="TabOne"
       tabBarOptions={{ activeTintColor: Colors[colorScheme].tint }}>
+
       <BottomTab.Screen
         name="Home"
         screenOptions={{headerShown: false}}
