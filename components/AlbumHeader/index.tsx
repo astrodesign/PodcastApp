@@ -1,4 +1,5 @@
 import { AntDesign } from '@expo/vector-icons';
+import { LinearGradient } from 'expo-linear-gradient';
 import React from 'react'
 import { Image, StyleSheet, Text, View } from 'react-native'
 import { TouchableOpacity } from 'react-native-gesture-handler';
@@ -11,6 +12,10 @@ export type AlbumHeaderProps={
 const AlbumHeader = (props: AlbumHeaderProps) => {
     return (
         <View style={styles.container}>
+             <LinearGradient
+                colors={["#2b2b2b", "#000"]}
+                style={StyleSheet.absoluteFill}
+              />
             <Image source={{uri: props.album.imageUri}} style={styles.image}/>
         <Text style={styles.name}>{props.album.name}</Text>
         <View style={styles.creatorContainer}>

@@ -1,0 +1,15 @@
+{
+  "dev": {
+    "awscloudformation": {
+      "AuthRoleName": "amplify-podcastapp-dev-120713-authRole",
+      "UnauthRoleArn": "arn:aws:iam::085527173084:role/amplify-podcastapp-dev-120713-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::085527173084:role/amplify-podcastapp-dev-120713-authRole",
+      "Region": "us-east-2",
+      "DeploymentBucketName": "amplify-podcastapp-dev-120713-deployment",
+      "UnauthRoleName": "amplify-podcastapp-dev-120713-unauthRole",
+      "StackName": "amplify-podcastapp-dev-120713",
+      "StackId": "arn:aws:cloudformation:us-east-2:085527173084:stack/amplify-podcastapp-dev-120713/1325d420-01d9-11ec-9567-02c14aa8c6de",
+      "AmplifyAppId": "d3j9vb2lsfhxu6"
+    }
+  }
+}

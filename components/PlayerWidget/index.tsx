@@ -1,11 +1,12 @@
 import React, {useContext, useEffect, useState} from 'react';
 import {Text, Image, View, TouchableOpacity} from 'react-native';
-import { AntDesign, FontAwesome } from "@expo/vector-icons";
+import { AntDesign, Feather, FontAwesome } from "@expo/vector-icons";
 import { API, graphqlOperation } from 'aws-amplify';
 
 import styles from './styles';
 import {Song} from "../../types";
 import {Sound} from "expo-av/build/Audio/Sound";
+import { SafeAreaView } from 'react-native-safe-area-context';
 
 //import { AppContext } from '../../AppContext';
 //import {getSong} from "../../src/graphql/queries"; 
@@ -91,9 +92,9 @@ const PlayerWidget = () => {
               </View>
     
               <View style={styles.buttonContainer}>
-                <AntDesign name="hearto" size={30} color={"white"}/>
+                <Feather name="speaker" size={30} color={"lightgray"}/>
                 <TouchableOpacity onPress={onPlayPausePress}>
-                  <FontAwesome name={isPlaying ? 'pause' : 'play'} size={30} color={"white"}/>
+                  <FontAwesome name={isPlaying ? 'pause' : 'play'} size={30} color={"lightgray"}/>
                 </TouchableOpacity>
               </View>
             </View>

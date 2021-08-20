@@ -4,14 +4,18 @@ import Album from '../components/Album';
 import AlbumCategoryComponent from '../components/AlbumCategory';
 import albumCategories from '../data/albumCategories';
 import PlayerControls from '../components/PlayerControls'
+import { LinearGradient } from 'expo-linear-gradient';
 
 export default function HomeScreen() {
   return (
     <SafeAreaView style={styles.container}>
-
-      <Text style={styles.title}>Hello,  Walker</Text>
+      <LinearGradient
+                colors={["#2b2b2b", "#000"]}
+                style={StyleSheet.absoluteFill}
+              />
       <FlatList
         data={albumCategories}
+        ListHeaderComponent={()=> <Text style={styles.title}>Hello Walker</Text>}
         renderItem={({ item }) => (
           <AlbumCategoryComponent
             title={item.title}

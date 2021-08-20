@@ -43,9 +43,10 @@ const styles = StyleSheet.create({
     buttonContainer:{
         alignItems: 'center', 
         flexDirection: 'row', 
-        justifyContent: 'space-around', 
+        justifyContent: 'space-evenly', 
         width: 100, 
-        left: 100
+        left: 100, 
+        paddingRight: 20 
     }, 
 
     row:{
@@ -56,7 +57,7 @@ const styles = StyleSheet.create({
 
     progress:{
         height: 4, 
-        backgroundColor: 'white', 
+        backgroundColor: '#1CD05D', 
     }
 
 })
