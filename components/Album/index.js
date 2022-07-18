@@ -1,17 +1,11 @@
 import React from 'react'
 import { View, Text, Image, TouchableWithoutFeedback} from 'react-native'
-import styles from './styles'; 
 import { Album } from '../../types'; 
 import { useNavigation } from '@react-navigation/native';
+import tw from 'twrnc'
 
 
-export type AlbumProps={
-    album: Album, 
-}
-
-
-
-const AlbumComponent = (props: AlbumProps) => {
+const AlbumComponent = (props) => {
 
     const navigation = useNavigation(); 
 
@@ -21,9 +15,9 @@ const AlbumComponent = (props: AlbumProps) => {
 
     return (
         <TouchableWithoutFeedback   onPress={albumClick}>
-            <View style={styles.container}>
-            <Image source={{uri: props.album.imageUri}} style={styles.image}/>
-            <Text style={styles.text}>{props.album.artistsHeadline}</Text>
+            <View style={tw`w-44`}>
+            <Image source={{uri: props.album.imageUri}} style={tw`w-32 h-32 rounded-xl `}/>
+            <Text style={tw`font-light text-sm text-gray-300 p-1`}>{props.album.artistsHeadline}</Text>
             </View>
         </TouchableWithoutFeedback>
         

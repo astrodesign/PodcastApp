@@ -3,19 +3,22 @@ import { StyleSheet, Text, View, SafeAreaView, FlatList } from 'react-native';
 import Album from '../components/Album';
 import AlbumCategoryComponent from '../components/AlbumCategory';
 import albumCategories from '../data/albumCategories';
-import PlayerControls from '../components/PlayerControls'
 import { LinearGradient } from 'expo-linear-gradient';
+import tw from 'twrnc'
+import { gql, useQuery } from '@apollo/client';
 
 export default function HomeScreen() {
+  const {data} = useQuery(EPISODE_QUERY)
+  console.log(data)
   return (
-    <SafeAreaView style={styles.container}>
+    <SafeAreaView style={tw`flex-1 justify-center`}>
       <LinearGradient
-                colors={["#2b2b2b", "#000"]}
-                style={StyleSheet.absoluteFill}
-              />
+        colors={["#2b2b2b", "#000"]}
+        style={StyleSheet.absoluteFill}
+      />
+      <Text style={tw`text-2xl p-2 mb-2 text-white`}>Hello Walker</Text>
       <FlatList
         data={albumCategories}
-        ListHeaderComponent={()=> <Text style={styles.title}>Hello Walker</Text>}
         renderItem={({ item }) => (
           <AlbumCategoryComponent
             title={item.title}
@@ -26,23 +29,17 @@ export default function HomeScreen() {
   );
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1, 
-    alignItems: 'flex-start',
-    justifyContent: 'center',
-
-  },
-  title: {
-    color: 'white', 
-    fontSize: 28, 
-    fontWeight: 'bold', 
-    margin: 10, 
-    
-  },
-  separator: {
-    marginVertical: 30,
-    height: 1,
-    width: '80%',
-  },
-});
+const EPISODE_QUERY = gql`
+query episodeQuery {
+  episodes{
+    title
+    id
+    episodeNumber
+    guests{
+      fullName
+    }
+    image {
+      url
+    }
+  }
+}`

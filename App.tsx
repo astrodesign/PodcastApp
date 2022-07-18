@@ -7,10 +7,12 @@ import useCachedResources from './hooks/useCachedResources';
 import useColorScheme from './hooks/useColorScheme';
 import Navigation from './navigation';
 import PlayerWidget from './components/PlayerWidget'; 
+import { ApolloClient, InMemoryCache, ApolloProvider, gql } from '@apollo/client';
 
-import Amplify from "aws-amplify";
-import awsExports from "./aws-exports.js";
-Amplify.configure(awsExports);
+const client = new ApolloClient({
+    uri: 'https://api-us-west-2.hygraph.com/v2/cl56ver9o44yv01uk1eh27u6j/master',
+    cache: new InMemoryCache(),
+  });
 
 export default function App() {
   const isLoadingComplete = useCachedResources();
@@ -20,11 +22,13 @@ export default function App() {
     return null;
   } else {
     return (
-      <SafeAreaProvider>
-        <Navigation colorScheme={colorScheme} />
-        <StatusBar />
-        <PlayerWidget />
-      </SafeAreaProvider>
+      <ApolloProvider client={client}>      
+        <SafeAreaProvider>
+          <Navigation colorScheme={colorScheme} />
+          <StatusBar />
+          <PlayerWidget />
+        </SafeAreaProvider>
+      </ApolloProvider>
     );
   }
 }

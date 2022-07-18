@@ -2,6 +2,7 @@ import React, {useContext, useEffect, useState} from 'react';
 import {Text, Image, View, TouchableOpacity} from 'react-native';
 import { AntDesign, Feather, FontAwesome } from "@expo/vector-icons";
 import { API, graphqlOperation } from 'aws-amplify';
+import tw from 'twrnc'
 
 import styles from './styles';
 import {Song} from "../../types";
@@ -10,9 +11,6 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 
 //import { AppContext } from '../../AppContext';
 //import {getSong} from "../../src/graphql/queries"; 
-
-
-
 
 const PlayerWidget = () => {
     
@@ -26,10 +24,10 @@ const PlayerWidget = () => {
       }
     
 
-      const [sound, setSound] = useState<Sound|null>(null);
-      const [isPlaying, setIsPlaying] = useState<boolean>(true);
-      const [duration, setDuration] = useState<number|null>(null);
-      const [position, setPosition] = useState<number|null>(null);
+      const [sound, setSound] = useState(null);
+      const [isPlaying, setIsPlaying] = useState(true);
+      const [duration, setDuration] = useState(null);
+      const [position, setPosition] = useState(null);
 
       const onPlaybackStatusUpdate = (status) => {
         setIsPlaying(status.isPlaying);
@@ -84,17 +82,17 @@ const PlayerWidget = () => {
         <View style={styles.container}>
           <View style={[styles.progress, { width: `${getProgress()}%`}]} />
           <View style={styles.row}>
-            <Image source={{ uri: song.imageUri }} style={styles.image} />
-            <View style={styles.rightContainer}>
-              <View style={styles.nameContainer}>
-                <Text style={styles.title}>{song.title}</Text>
-                <Text style={styles.artist}>{song.artist}</Text>
+            <Image source={{ uri: song.imageUri }} style={tw`w-18 h-18 rounded-lg`} />
+            <View style={tw`p-3 flex-row w-3/4` }>
+              <View style={tw`w-3/4`}>
+                <Text style={tw`text-semibold text-white p-1`}>{song.title}</Text>
+                <Text style={tw`p-1 font-thin text-sm text-white`}>{song.artist}</Text>
               </View>
     
-              <View style={styles.buttonContainer}>
-                <Feather name="speaker" size={30} color={"lightgray"}/>
+              <View style={tw`flex-row justify-between self-center w-1/4`}>
+                <Feather name="speaker" size={24} color={"lightgray"}/>
                 <TouchableOpacity onPress={onPlayPausePress}>
-                  <FontAwesome name={isPlaying ? 'pause' : 'play'} size={30} color={"lightgray"}/>
+                  <FontAwesome name={isPlaying ? 'pause' : 'play'} size={24} color={"lightgray"}/>
                 </TouchableOpacity>
               </View>
             </View>
